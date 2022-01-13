@@ -1,0 +1,15 @@
+.page__footer {
+  margin: 0 48px 24px;
+}
+
+@media (max-width: 768px) {
+  .page__footer {
+    margin: 0 24px 24px;
+  }
+}
+
+@media (max-width: 425px) {
+  .page__footer {
+    margin: 0 16px 24px;
+  }
+}
