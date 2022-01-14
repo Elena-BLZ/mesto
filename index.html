@@ -9,6 +9,18 @@
 </head>
 
 <body class="page">
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close-btn">
+      </button>
+      <form action="" class="edit-frm">
+        <h2 class="edit-frm__heading">Редактировать профиль</h2>
+        <input type="text" class="edit-frm__item" name="name" placeholder="Как вас зовут?">
+        <input type="text" class="edit-frm__item" name="description" placeholder="Еще немного о себе.">
+        <button class="edit-frm__save-btn" type='submit'>Сохранить</button>
+      </form>
+    </div>
+  </div>
   <div class="page__container">
     <header class="header page__header">
       <img src="images/logo.svg" alt="Логотип" class="logo header__logo">
@@ -73,8 +85,6 @@
         </article>
 
       </section>
-
-
     </main>
     <footer class="footer page__footer">
       <p class="footer__copyright">© 2022 Mesto Russia</p>
