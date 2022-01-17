@@ -13,10 +13,10 @@
     <div class="popup__container">
       <button class="popup__close-btn button">
       </button>
-      <form action="" class="edit-frm">
+      <form action="" class="edit-frm" name="edit-frm">
         <h2 class="edit-frm__heading">Редактировать профиль</h2>
-        <input type="text" class="edit-frm__item" name="name" placeholder="Как вас зовут?">
-        <input type="text" class="edit-frm__item" name="description" placeholder="Еще немного о себе.">
+        <input type="text" class="edit-frm__item edit-frm__name" name="name" placeholder="Как вас зовут?">
+        <input type="text" class="edit-frm__item edit-frm__description" name="description" placeholder="Еще немного о себе.">
         <button class="edit-frm__save-btn" type='submit'>Сохранить</button>
       </form>
     </div>
@@ -30,10 +30,11 @@
       <section class="profile page__profile">
         <img src="images/avatar.jpg" alt="Кусто в шапке" class="profile__avatar">
         <div class="profile__info">
-          <h1 class="profile__name">
-            Жак-Ив Кусто
+          <div class="profile__name-container">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit-btn button"></button>
-          </h1>
+          </div>
+
           <p class="profile__description">Исследователь океана</p>
 
         </div>
@@ -89,5 +90,6 @@
       <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
   </div>
+  <script src="index.js"></script>
 </body>
 </html>

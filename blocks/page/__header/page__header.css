@@ -2,10 +2,8 @@
   margin: 45px auto 40px;
 }
 
-
 @media (max-width: 425px) {
   .page__header {
     margin-top: 28px;
   }
-
 }
