@@ -3,8 +3,8 @@ let editBTn = page.querySelector('.profile__edit-btn');
 let popUp = page.querySelector('.popup');
 let closeBtn = page.querySelector('.popup__close-btn');
 let editForm = page.querySelector('.edit-frm');
-let nameInput = editForm.querySelector('.edit-frm__name');
-let jobInput = editForm.querySelector('.edit-frm__description');
+let nameInput = editForm.querySelector('.edit-frm__item_type_name');
+let jobInput = editForm.querySelector('.edit-frm__item_type_description');
 let profileName = page.querySelector('.profile__name');
 let profileJob = page.querySelector('.profile__description');
 

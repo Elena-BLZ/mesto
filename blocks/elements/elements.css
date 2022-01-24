@@ -1,19 +1,7 @@
 .elements {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   row-gap: 20px;
   column-gap: 17px;
   justify-items: center;
-}
-
-@media (max-width: 880px) {
-  .elements {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .elements {
-    grid-template-columns: 100%;
-  }
 }
