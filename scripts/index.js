@@ -49,6 +49,8 @@ function addElement(card) {
   newElement.querySelector('.element__photo').src = card.link;
   newElement.querySelector('.element__name').innerText = card.name;
   newElement.querySelector('.element__like-btn').addEventListener('click', likeBtnHandler);
+  newElement.querySelector('.element__del-btn').addEventListener('click', delBtnHandler);
+
 
   elements.insertBefore(newElement, elements.firstChild);
 }
@@ -93,6 +95,10 @@ function elementSubmitHandler (evt) {
 
 function likeBtnHandler (evt) {
   evt.target.classList.toggle('element__like-btn_active');
+}
+
+function delBtnHandler (evt) {
+  evt.target.closest('.element').remove();
 }
 
 profileForm.addEventListener('submit', profileSubmitHandler);
