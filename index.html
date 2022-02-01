@@ -34,11 +34,11 @@
       <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup">
+  <div class="popup popup_type_profile">
     <div class="popup__container">
       <button class="popup__close-btn button" type="button" aria-label="Закрыть">
       </button>
-      <form class="edit-frm" name="edit-frm">
+      <form class="edit-frm edit-frm_type_profile" name="edit-frm">
         <h2 class="edit-frm__heading">Редактировать профиль</h2>
         <input type="text" class="edit-frm__item edit-frm__item_type_name" name="name" placeholder="Как вас зовут?" required>
         <input type="text" class="edit-frm__item edit-frm__item_type_description" name="description" placeholder="Еще немного о себе." required>
@@ -46,6 +46,19 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_type_element">
+    <div class="popup__container">
+      <button class="popup__close-btn button" type="button" aria-label="Закрыть">
+      </button>
+      <form class="edit-frm edit-frm_type_element" name="edit-frm">
+        <h2 class="edit-frm__heading">Новое место</h2>
+        <input type="text" class="edit-frm__item edit-frm__item_type_name" name="name" placeholder="Название" required>
+        <input type="text" class="edit-frm__item edit-frm__item_type_description" name="description" placeholder="Ссылка на картинку" required>
+        <button class="edit-frm__save-btn" type='submit'>Создать</button>
+      </form>
+    </div>
+  </div>
+
   <template class="element-template">
     <article class="element">
       <div class="element__photo-container">
