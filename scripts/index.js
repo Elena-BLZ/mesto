@@ -30,8 +30,10 @@ const editBTn = page.querySelector('.profile__edit-btn');
 const addBtn = page.querySelector('.profile__add-btn');
 const profilePopUp = page.querySelector('.popup_type_profile');
 const elementPopUp = page.querySelector('.popup_type_element');
+const picturePopUp = page.querySelector('.popup_type_picture');
 const profileCloseBtn = profilePopUp.querySelector('.popup__close-btn');
 const elementCloseBtn = elementPopUp.querySelector('.popup__close-btn');
+const pictureCloseBtn = picturePopUp.querySelector('.popup__close-btn');
 const profileForm = page.querySelector('.edit-frm_type_profile');
 const elementForm = page.querySelector('.edit-frm_type_element');
 const nameInput = profileForm.querySelector('.edit-frm__item_type_name');
@@ -42,15 +44,20 @@ const profileName = page.querySelector('.profile__name');
 const profileJob = page.querySelector('.profile__description');
 const elementTemplate = page.querySelector('.element-template').content;
 const elements = page.querySelector('.elements');
+const bigPhoto = picturePopUp.querySelector('.popup__picture');
+const caption = picturePopUp.querySelector('.popup__caption');
+
 
 
 function addElement(card) {
   const newElement = elementTemplate.cloneNode(true);
   newElement.querySelector('.element__photo').src = card.link;
+  newElement.querySelector('.element__photo').alt = card.name;
   newElement.querySelector('.element__name').innerText = card.name;
+
   newElement.querySelector('.element__like-btn').addEventListener('click', likeBtnHandler);
   newElement.querySelector('.element__del-btn').addEventListener('click', delBtnHandler);
-
+  newElement.querySelector('.element__photo').addEventListener('click', openPicturePopup);
 
   elements.insertBefore(newElement, elements.firstChild);
 }
@@ -74,6 +81,13 @@ function openElementPopUp() {
 
 function openPopUp(popup) {
   popup.classList.add('popup_opened');
+}
+
+function openPicturePopup (evt) {
+  bigPhoto.src = evt.target.src;
+  bigPhoto.alt = evt.target.alt;
+  caption.textContent = evt.target.alt;
+  openPopUp(picturePopUp);
 }
 
 function closePopUp(evt) {
@@ -101,11 +115,13 @@ function delBtnHandler (evt) {
   evt.target.closest('.element').remove();
 }
 
+
 profileForm.addEventListener('submit', profileSubmitHandler);
 elementForm.addEventListener('submit', elementSubmitHandler);
 editBTn.addEventListener('click', openProfilePopUp);
 addBtn.addEventListener('click', openElementPopUp)
 profileCloseBtn.addEventListener('click', closePopUp);
-elementCloseBtn.addEventListener('click', closePopUp)
+elementCloseBtn.addEventListener('click', closePopUp);
+pictureCloseBtn.addEventListener('click', closePopUp);
 
 renderInitialElements();

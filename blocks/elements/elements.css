@@ -5,3 +5,11 @@
   column-gap: 17px;
   justify-items: center;
 }
+
+@media (max-width: 880px){
+  .elements {
+    margin: 0 19px 0;
+  }
+}
+
+
