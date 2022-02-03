@@ -39,8 +39,10 @@
       </button>
       <form class="edit-frm edit-frm_type_profile" name="edit-frm">
         <h2 class="edit-frm__heading">Редактировать профиль</h2>
-        <input type="text" class="edit-frm__item edit-frm__item_type_name" name="name" placeholder="Как вас зовут?" required>
-        <input type="text" class="edit-frm__item edit-frm__item_type_description" name="description" placeholder="Еще немного о себе." required>
+        <input type="text" class="edit-frm__item edit-frm__item_type_name" name="name" placeholder="Как вас зовут?"
+          required>
+        <input type="text" class="edit-frm__item edit-frm__item_type_description" name="description"
+          placeholder="Еще немного о себе." required>
         <button class="edit-frm__save-btn" type='submit'>Сохранить</button>
       </form>
     </div>
@@ -52,17 +54,18 @@
       <form class="edit-frm edit-frm_type_element" name="edit-frm">
         <h2 class="edit-frm__heading">Новое место</h2>
         <input type="text" class="edit-frm__item edit-frm__item_type_name" name="name" placeholder="Название" required>
-        <input type="text" class="edit-frm__item edit-frm__item_type_description" name="description" placeholder="Ссылка на картинку" required>
+        <input type="text" class="edit-frm__item edit-frm__item_type_description" name="description"
+          placeholder="Ссылка на картинку" required>
         <button class="edit-frm__save-btn" type='submit'>Создать</button>
       </form>
     </div>
   </div>
   <div class="popup popup_type_picture">
-  <div class="popup__container popup__container_type_picture">
+    <div class="popup__container popup__container_type_picture">
       <button class="popup__close-btn button" type="button" aria-label="Закрыть">
       </button>
       <figure class="popup__figure">
-        <img class="popup__picture" >
+        <img class="popup__picture">
         <figcaption class="popup__caption"></figcaption>
       </figure>
     </div>
@@ -82,4 +85,5 @@
   </template>
   <script src="scripts/index.js"></script>
 </body>
+
 </html>

@@ -51,13 +51,14 @@ const caption = picturePopUp.querySelector('.popup__caption');
 
 function addElement(card) {
   const newElement = elementTemplate.cloneNode(true);
-  newElement.querySelector('.element__photo').src = card.link;
-  newElement.querySelector('.element__photo').alt = card.name;
+  const photo = newElement.querySelector('.element__photo')
+  photo.src = card.link;
+  photo.alt = card.name;
   newElement.querySelector('.element__name').innerText = card.name;
 
   newElement.querySelector('.element__like-btn').addEventListener('click', likeBtnHandler);
   newElement.querySelector('.element__del-btn').addEventListener('click', delBtnHandler);
-  newElement.querySelector('.element__photo').addEventListener('click', openPicturePopup);
+  photo.addEventListener('click', openPicturePopup);
 
   elements.insertBefore(newElement, elements.firstChild);
 }
@@ -77,7 +78,6 @@ function openElementPopUp() {
   linkInput.value = '';
   openPopUp (elementPopUp);
 }
-
 
 function openPopUp(popup) {
   popup.classList.add('popup_opened');

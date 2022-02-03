@@ -2,11 +2,9 @@
   opacity: 0;
   visibility: hidden;
   z-index: -100;
-  transition: opacity .5s ease-in, visibility 0s .5s, z-index 0s .6s;
-
+  transition: opacity 0.5s ease-in, visibility 0s 0.5s, z-index 0s 0.6s;
 
   display: flex;
-
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +12,5 @@
   height: 100vh;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0,0,0, .5);
-
+  background-color: rgba(0, 0, 0, 0.5);
 }
-
