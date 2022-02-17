@@ -1,30 +1,3 @@
-const initialElements = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 const page = document.querySelector('.page');
 const editBTn = page.querySelector('.profile__edit-btn');
 const addBtn = page.querySelector('.profile__add-btn');
@@ -38,8 +11,8 @@ const profileForm = page.querySelector('.edit-frm_type_profile');
 const elementForm = page.querySelector('.edit-frm_type_element');
 const nameInput = profileForm.querySelector('.edit-frm__item_type_name');
 const jobInput = profileForm.querySelector('.edit-frm__item_type_description');
-const placeInput = elementForm.querySelector('.edit-frm__item_type_name');
-const linkInput = elementForm.querySelector('.edit-frm__item_type_description');
+const placeInput = elementForm.querySelector('.edit-frm__item_type_place');
+const linkInput = elementForm.querySelector('.edit-frm__item_type_link');
 const profileName = page.querySelector('.profile__name');
 const profileJob = page.querySelector('.profile__description');
 const elementTemplate = page.querySelector('.element-template').content;
@@ -47,9 +20,11 @@ const elements = page.querySelector('.elements');
 const bigPhoto = picturePopUp.querySelector('.popup__picture');
 const caption = picturePopUp.querySelector('.popup__caption');
 
+function addElement(card, container) {
+  container.prepend(card);
+}
 
-
-function addElement(card) {
+function createCard(card) {
   const newElement = elementTemplate.cloneNode(true);
   const photo = newElement.querySelector('.element__photo')
   photo.src = card.link;
@@ -60,12 +35,13 @@ function addElement(card) {
   newElement.querySelector('.element__del-btn').addEventListener('click', delBtnHandler);
   photo.addEventListener('click', openPicturePopup);
 
-  elements.insertBefore(newElement, elements.firstChild);
+  return newElement;
 }
 
-function renderInitialElements() {
-  initialElements.forEach (addElement);
-}
+function renderInitialElements() {//initialData.js
+  initialElements.forEach ((item) =>
+    addElement(createCard(item), elements)
+  ); }
 
 function openProfilePopUp() {
   nameInput.value = profileName.textContent;
@@ -103,7 +79,7 @@ function profileSubmitHandler (evt) {
 
 function elementSubmitHandler (evt) {
   evt.preventDefault();
-  addElement ({name: placeInput.value, link: linkInput.value });
+  addElement (createCard({name: placeInput.value, link: linkInput.value }), elements);
   closePopUp (evt);
 }
 
