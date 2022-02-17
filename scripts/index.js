@@ -19,14 +19,12 @@ const elementTemplate = page.querySelector('.element-template').content;
 const elements = page.querySelector('.elements');
 const bigPhoto = picturePopUp.querySelector('.popup__picture');
 const caption = picturePopUp.querySelector('.popup__caption');
+const profileSubmitBtn = profileForm.querySelector('.edit-frm__save-btn');
 
 function addElement(card, container) {
   container.prepend(card);
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> main
 function createCard(card) {
   const newElement = elementTemplate.cloneNode(true);
   const photo = newElement.querySelector('.element__photo')
@@ -49,12 +47,17 @@ function renderInitialElements() {//initialData.js
 function openProfilePopUp() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  checkInputValidity(profileForm, nameInput);
+  checkInputValidity(profileForm, jobInput);
+  toggleButtonState (profileForm, profileSubmitBtn);
   openPopUp (profilePopUp);
 }
 
 function openElementPopUp() {
   placeInput.value = '';
   linkInput.value = '';
+  checkInputValidity (elementForm, placeInput);
+  checkInputValidity (elementForm, linkInput);
   openPopUp (elementPopUp);
 }
 

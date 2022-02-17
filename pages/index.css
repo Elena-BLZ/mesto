@@ -37,6 +37,9 @@
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__picture/popup__picture.css);
 @import url(../blocks/edit-frm/__item/edit-frm__item.css);
+@import url(../blocks/edit-frm/__item/_invalid/edit-frm__item_invalid.css);
+@import url(../blocks/edit-frm/__error-message/_visible/edit-frm__error-message_visible.css);
 @import url(../blocks/edit-frm/__save-btn/edit-frm__save-btn.css);
+@import url(../blocks/edit-frm/__save-btn/_disabled/edit-frm__save-btn_disabled.css);
 @import url(../blocks/edit-frm/__heading/edit-frm__heading.css);
 @import url(../blocks/button/button.css);
