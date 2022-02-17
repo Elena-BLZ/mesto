@@ -23,11 +23,6 @@ const caption = picturePopUp.querySelector('.popup__caption');
 function addElement(card, container) {
   container.prepend(card);
 }
-<<<<<<< HEAD
-=======
-//elements.insertBefore(newElement, elements.firstChild);
->>>>>>> d792cfca52dd89c3138e693853dd02ec43cba061
-
 function createCard(card) {
   const newElement = elementTemplate.cloneNode(true);
   const photo = newElement.querySelector('.element__photo')
