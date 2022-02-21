@@ -4,9 +4,6 @@ const addBtn = page.querySelector('.profile__add-btn');
 const profilePopUp = page.querySelector('.popup_type_profile');
 const elementPopUp = page.querySelector('.popup_type_element');
 const picturePopUp = page.querySelector('.popup_type_picture');
-const profileCloseBtn = profilePopUp.querySelector('.popup__close-btn');
-const elementCloseBtn = elementPopUp.querySelector('.popup__close-btn');
-const pictureCloseBtn = picturePopUp.querySelector('.popup__close-btn');
 const profileForm = page.querySelector('.edit-frm_type_profile');
 const elementForm = page.querySelector('.edit-frm_type_element');
 const nameInput = profileForm.querySelector('.edit-frm__item_type_name');
@@ -32,8 +29,8 @@ function createCard(card) {
   photo.alt = card.name;
   newElement.querySelector('.element__name').innerText = card.name;
 
-  newElement.querySelector('.element__like-btn').addEventListener('click', likeBtnHandler);
-  newElement.querySelector('.element__del-btn').addEventListener('click', delBtnHandler);
+  newElement.querySelector('.element__like-btn').addEventListener('click', handleLikeBtn);
+  newElement.querySelector('.element__del-btn').addEventListener('click', handleDelBtn);
   photo.addEventListener('click', openPicturePopup);
 
   return newElement;
@@ -62,6 +59,7 @@ function openElementPopUp() {
 }
 
 function openPopUp(popup) {
+  document.addEventListener('keydown', closeByEscBtn);
   popup.classList.add('popup_opened');
 }
 
@@ -73,37 +71,61 @@ function openPicturePopup (evt) {
 }
 
 function closePopUp(evt) {
-  evt.target.closest('.popup').classList.remove('popup_opened');
+  console.log(evt);
+  const popUp = document.querySelector('.popup_opened');
+  console.log(popUp);
+  popUp.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscBtn);
 }
 
-function profileSubmitHandler (evt) {
+function handleProfileSubmit (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopUp(evt);
 }
 
-function elementSubmitHandler (evt) {
+function handleElementSubmit (evt) {
   evt.preventDefault();
   addElement (createCard({name: placeInput.value, link: linkInput.value }), elements);
   closePopUp (evt);
 }
 
-function likeBtnHandler (evt) {
+function handleLikeBtn (evt) {
   evt.target.classList.toggle('element__like-btn_active');
 }
 
-function delBtnHandler (evt) {
+function handleDelBtn (evt) {
   evt.target.closest('.element').remove();
 }
 
+function closeByOverlay (evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopUp (evt);
+  }
+}
 
-profileForm.addEventListener('submit', profileSubmitHandler);
-elementForm.addEventListener('submit', elementSubmitHandler);
+function closeByEscBtn (evt) {
+  if (evt.key === 'Escape') {
+    closePopUp (evt);
+  }
+}
+
+function setPopUpsHandlers () {
+  const popUps = Array.from (document.querySelectorAll('.popup'));
+  popUps.forEach((item)=>{setPopUpClosing(item)});
+}
+
+function setPopUpClosing (popUpItem) {
+  const closeBtn = popUpItem.querySelector('.popup__close-btn');
+  closeBtn.addEventListener('click', closePopUp);
+  popUpItem.addEventListener('click', closeByOverlay)
+}
+
+profileForm.addEventListener('submit', handleProfileSubmit);
+elementForm.addEventListener('submit', handleElementSubmit);
 editBTn.addEventListener('click', openProfilePopUp);
 addBtn.addEventListener('click', openElementPopUp)
-profileCloseBtn.addEventListener('click', closePopUp);
-elementCloseBtn.addEventListener('click', closePopUp);
-pictureCloseBtn.addEventListener('click', closePopUp);
 
 renderInitialElements();
+setPopUpsHandlers();
