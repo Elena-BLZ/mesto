@@ -44,8 +44,8 @@ function renderInitialElements() {//initialData.js
 function openProfilePopUp() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  checkInputValidity(profileForm, nameInput);
-  checkInputValidity(profileForm, jobInput);
+  hideInputError(profileForm, nameInput);
+  hideInputError(profileForm, jobInput);
   toggleButtonState (profileForm, profileSubmitBtn);
   openPopUp (profilePopUp);
 }
@@ -53,8 +53,8 @@ function openProfilePopUp() {
 function openElementPopUp() {
   placeInput.value = '';
   linkInput.value = '';
-  checkInputValidity (elementForm, placeInput);
-  checkInputValidity (elementForm, linkInput);
+  hideInputError (elementForm, placeInput);
+  hideInputError (elementForm, linkInput);
   openPopUp (elementPopUp);
 }
 
@@ -71,9 +71,7 @@ function openPicturePopup (evt) {
 }
 
 function closePopUp(evt) {
-  console.log(evt);
   const popUp = document.querySelector('.popup_opened');
-  console.log(popUp);
   popUp.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscBtn);
 }

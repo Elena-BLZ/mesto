@@ -57,7 +57,6 @@ function enableValidation (settings) {
   forms.forEach ((form)=>{
     form.addEventListener ('submit', handleFormSubmit);
     const button = form.querySelector(settings.submitButtonSelector);
-    toggleButtonState(form, button);
     setListeners (form, button);
   });
 };
