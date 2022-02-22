@@ -22,8 +22,3 @@
     margin-top: 21px;
   }
 }
-
-.edit-frm__save-btn:hover {
-  opacity: .8;
-  cursor: pointer;
-}

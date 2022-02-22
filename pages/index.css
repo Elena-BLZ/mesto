@@ -36,6 +36,7 @@
 @import url(../blocks/popup/__figure/popup__figure.css);
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__picture/popup__picture.css);
+@import url(../blocks/edit-frm/edit-frm.css);
 @import url(../blocks/edit-frm/__item/edit-frm__item.css);
 @import url(../blocks/edit-frm/__item/_invalid/edit-frm__item_invalid.css);
 @import url(../blocks/edit-frm/__error-message/_visible/edit-frm__error-message_visible.css);

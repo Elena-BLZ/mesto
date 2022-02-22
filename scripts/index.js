@@ -17,6 +17,8 @@ const elements = page.querySelector('.elements');
 const bigPhoto = picturePopUp.querySelector('.popup__picture');
 const caption = picturePopUp.querySelector('.popup__caption');
 const profileSubmitBtn = profileForm.querySelector('.edit-frm__save-btn');
+const elementSubmitBtn = elementForm.querySelector('.edit-frm__save-btn');
+
 
 function addElement(card, container) {
   container.prepend(card);
@@ -55,6 +57,7 @@ function openElementPopUp() {
   linkInput.value = '';
   hideInputError (elementForm, placeInput);
   hideInputError (elementForm, linkInput);
+  toggleButtonState (elementForm, elementSubmitBtn);
   openPopUp (elementPopUp);
 }
 

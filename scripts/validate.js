@@ -36,9 +36,12 @@ function toggleButtonState (formItem, buttonItem) {
   if (!formItem.checkValidity()){
     buttonItem.setAttribute ('disabled', '');
     buttonItem.classList.add(validationSettings.inactiveButtonClass);
+    buttonItem.classList.remove('button');
+
   } else {
     buttonItem.removeAttribute ('disabled');
     buttonItem.classList.remove(validationSettings.inactiveButtonClass);
+    buttonItem.classList.add('button');
   };
 
 }
