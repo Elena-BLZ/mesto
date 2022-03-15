@@ -1,3 +1,5 @@
+import { FormValidator } from "./FormValidator.js";
+
 const page = document.querySelector('.page');
 const editBTn = page.querySelector('.profile__edit-btn');
 const addBtn = page.querySelector('.profile__add-btn');
@@ -19,6 +21,22 @@ const caption = picturePopUp.querySelector('.popup__caption');
 const profileSubmitBtn = profileForm.querySelector('.edit-frm__save-btn');
 const elementSubmitBtn = elementForm.querySelector('.edit-frm__save-btn');
 
+const validationSettings = {
+  formSelector: '.edit-frm',
+  inputSelector: '.edit-frm__item',
+  submitButtonSelector: '.edit-frm__save-btn',
+  inactiveButtonClass: 'edit-frm__save-btn_disabled',
+  inputErrorClass: 'edit-frm__item_invalid',
+  errorClass: 'edit-frm__error-message_visible'
+}
+
+const profileFormValidator = new FormValidator (validationSettings, profileForm);
+const elementFormValidator = new FormValidator (validationSettings, elementForm);
+
+profileFormValidator.enableValidation ();
+elementFormValidator.enableValidation ();
+
+
 
 function addElement(card, container) {
   container.prepend(card);
@@ -38,26 +56,28 @@ function createCard(card) {
   return newElement;
 }
 
-function renderInitialElements() {//initialData.js
+/* function renderInitialElements() {//initialData.js
   initialElements.forEach ((item) =>
     addElement(createCard(item), elements)
-  ); }
+  ); } */
 
 function openProfilePopUp() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  hideInputError(profileForm, nameInput);
-  hideInputError(profileForm, jobInput);
-  toggleButtonState (profileForm, profileSubmitBtn);
+
+  profileFormValidator.resetErrors ();
+  profileFormValidator.toggleButtonState();
+
   openPopUp (profilePopUp);
 }
 
 function openElementPopUp() {
   placeInput.value = '';
   linkInput.value = '';
-  hideInputError (elementForm, placeInput);
-  hideInputError (elementForm, linkInput);
-  toggleButtonState (elementForm, elementSubmitBtn);
+
+  elementFormValidator.resetErrors ();
+  elementFormValidator.toggleButtonState();
+
   openPopUp (elementPopUp);
 }
 
@@ -128,5 +148,5 @@ elementForm.addEventListener('submit', handleElementSubmit);
 editBTn.addEventListener('click', openProfilePopUp);
 addBtn.addEventListener('click', openElementPopUp)
 
-renderInitialElements();
+// renderInitialElements();
 setPopUpsHandlers();
