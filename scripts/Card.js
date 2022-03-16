@@ -3,8 +3,7 @@ export class Card {
     this._name = cardData.name;
     this._link = cardData.link;
     this._handlePhotoClick = hadlePhotoClick;
-
-    this._template = document.querySelector(cardTemplateSelector);
+    this._template = document.querySelector(cardTemplateSelector).content.querySelector('.element');
   }
 
   _handleLikeBtn = () => {
@@ -12,12 +11,13 @@ export class Card {
   }
 
   _handleDelBtn = () => {
-    this._delBtn.closest('.element').remove();
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 
   createCardElement() {
-    this._cardElement = this._template.content.cloneNode(true)
-    this._likeBtn = this._cardElement.querySelector('.element__like-btn')
+    this._cardElement = this._template.cloneNode(true);
+    this._likeBtn = this._cardElement.querySelector('.element__like-btn');
     this._delBtn = this._cardElement.querySelector('.element__del-btn');
     const photo = this._cardElement.querySelector('.element__photo')
 

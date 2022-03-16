@@ -10,8 +10,8 @@ import {
 } from "./initialData.js"
 
 const page = document.querySelector('.page');
-const editBTn = page.querySelector('.profile__edit-btn');
-const addBtn = page.querySelector('.profile__add-btn');
+const profileEditBtn = page.querySelector('.profile__edit-btn');
+const elementAddBtn = page.querySelector('.profile__add-btn');
 const profilePopUp = page.querySelector('.popup_type_profile');
 const elementPopUp = page.querySelector('.popup_type_element');
 const picturePopUp = page.querySelector('.popup_type_picture');
@@ -29,14 +29,18 @@ const caption = picturePopUp.querySelector('.popup__caption');
 const profileFormValidator = new FormValidator(validationSettings, profileForm);
 const elementFormValidator = new FormValidator(validationSettings, elementForm);
 
-function addElement(card, container) {
+function renderElement(card, container) {
+  container.prepend(createElement(card));
+}
+
+function createElement (card) {
   const newCard = new Card(card, '.element-template', openPicturePopup);
-  container.prepend(newCard.createCardElement());
+  return newCard.createCardElement();
 }
 
 function renderInitialElements() { //initialData.js
   initialElements.forEach((item) =>
-    addElement(item, elements)
+    renderElement(item, elements)
   );
 }
 
@@ -87,7 +91,7 @@ function handleProfileSubmit(evt) {
 
 function handleElementSubmit(evt) {
   evt.preventDefault();
-  addElement({
+  renderElement({
     name: placeInput.value,
     link: linkInput.value
   }, elements);
@@ -121,8 +125,8 @@ function setPopUpClosing(popUpItem) {
 
 profileForm.addEventListener('submit', handleProfileSubmit);
 elementForm.addEventListener('submit', handleElementSubmit);
-editBTn.addEventListener('click', openProfilePopUp);
-addBtn.addEventListener('click', openElementPopUp)
+profileEditBtn.addEventListener('click', openProfilePopUp);
+elementAddBtn.addEventListener('click', openElementPopUp)
 
 profileFormValidator.enableValidation();
 elementFormValidator.enableValidation();
