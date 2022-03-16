@@ -1,5 +1,4 @@
-const initialElements = [
-  {
+export const initialElements = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
@@ -24,3 +23,12 @@ const initialElements = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+export const validationSettings = {
+  formSelector: '.edit-frm',
+  inputSelector: '.edit-frm__item',
+  submitButtonSelector: '.edit-frm__save-btn',
+  inactiveButtonClass: 'edit-frm__save-btn_disabled',
+  inputErrorClass: 'edit-frm__item_invalid',
+  errorClass: 'edit-frm__error-message_visible'
+}

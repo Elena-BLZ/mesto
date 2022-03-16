@@ -1,4 +1,13 @@
-import { FormValidator } from "./FormValidator.js";
+import {
+  FormValidator
+} from "./FormValidator.js";
+import {
+  Card
+} from "./Card.js";
+import {
+  initialElements,
+  validationSettings
+} from "./initialData.js"
 
 const page = document.querySelector('.page');
 const editBTn = page.querySelector('.profile__edit-btn');
@@ -14,71 +23,41 @@ const placeInput = elementForm.querySelector('.edit-frm__item_type_place');
 const linkInput = elementForm.querySelector('.edit-frm__item_type_link');
 const profileName = page.querySelector('.profile__name');
 const profileJob = page.querySelector('.profile__description');
-const elementTemplate = page.querySelector('.element-template').content;
 const elements = page.querySelector('.elements');
 const bigPhoto = picturePopUp.querySelector('.popup__picture');
 const caption = picturePopUp.querySelector('.popup__caption');
-const profileSubmitBtn = profileForm.querySelector('.edit-frm__save-btn');
-const elementSubmitBtn = elementForm.querySelector('.edit-frm__save-btn');
-
-const validationSettings = {
-  formSelector: '.edit-frm',
-  inputSelector: '.edit-frm__item',
-  submitButtonSelector: '.edit-frm__save-btn',
-  inactiveButtonClass: 'edit-frm__save-btn_disabled',
-  inputErrorClass: 'edit-frm__item_invalid',
-  errorClass: 'edit-frm__error-message_visible'
-}
-
-const profileFormValidator = new FormValidator (validationSettings, profileForm);
-const elementFormValidator = new FormValidator (validationSettings, elementForm);
-
-profileFormValidator.enableValidation ();
-elementFormValidator.enableValidation ();
-
-
+const profileFormValidator = new FormValidator(validationSettings, profileForm);
+const elementFormValidator = new FormValidator(validationSettings, elementForm);
 
 function addElement(card, container) {
-  container.prepend(card);
+  const newCard = new Card(card, '.element-template', openPicturePopup);
+  container.prepend(newCard.createCardElement());
 }
 
-function createCard(card) {
-  const newElement = elementTemplate.cloneNode(true);
-  const photo = newElement.querySelector('.element__photo')
-  photo.src = card.link;
-  photo.alt = card.name;
-  newElement.querySelector('.element__name').innerText = card.name;
-
-  newElement.querySelector('.element__like-btn').addEventListener('click', handleLikeBtn);
-  newElement.querySelector('.element__del-btn').addEventListener('click', handleDelBtn);
-  photo.addEventListener('click', openPicturePopup);
-
-  return newElement;
+function renderInitialElements() { //initialData.js
+  initialElements.forEach((item) =>
+    addElement(item, elements)
+  );
 }
-
-/* function renderInitialElements() {//initialData.js
-  initialElements.forEach ((item) =>
-    addElement(createCard(item), elements)
-  ); } */
 
 function openProfilePopUp() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 
-  profileFormValidator.resetErrors ();
+  profileFormValidator.resetErrors();
   profileFormValidator.toggleButtonState();
 
-  openPopUp (profilePopUp);
+  openPopUp(profilePopUp);
 }
 
 function openElementPopUp() {
   placeInput.value = '';
   linkInput.value = '';
 
-  elementFormValidator.resetErrors ();
+  elementFormValidator.resetErrors();
   elementFormValidator.toggleButtonState();
 
-  openPopUp (elementPopUp);
+  openPopUp(elementPopUp);
 }
 
 function openPopUp(popup) {
@@ -86,7 +65,7 @@ function openPopUp(popup) {
   popup.classList.add('popup_opened');
 }
 
-function openPicturePopup (evt) {
+function openPicturePopup(evt) {
   bigPhoto.src = evt.target.src;
   bigPhoto.alt = evt.target.alt;
   caption.textContent = evt.target.alt;
@@ -99,45 +78,42 @@ function closePopUp(evt) {
   document.removeEventListener('keydown', closeByEscBtn);
 }
 
-function handleProfileSubmit (evt) {
+function handleProfileSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopUp(evt);
 }
 
-function handleElementSubmit (evt) {
+function handleElementSubmit(evt) {
   evt.preventDefault();
-  addElement (createCard({name: placeInput.value, link: linkInput.value }), elements);
-  closePopUp (evt);
+  addElement({
+    name: placeInput.value,
+    link: linkInput.value
+  }, elements);
+  closePopUp(evt);
 }
 
-function handleLikeBtn (evt) {
-  evt.target.classList.toggle('element__like-btn_active');
-}
-
-function handleDelBtn (evt) {
-  evt.target.closest('.element').remove();
-}
-
-function closeByOverlay (evt) {
+function closeByOverlay(evt) {
   if (evt.target === evt.currentTarget) {
-    closePopUp (evt);
+    closePopUp(evt);
   }
 }
 
-function closeByEscBtn (evt) {
+function closeByEscBtn(evt) {
   if (evt.key === 'Escape') {
-    closePopUp (evt);
+    closePopUp(evt);
   }
 }
 
-function setPopUpsHandlers () {
-  const popUps = Array.from (document.querySelectorAll('.popup'));
-  popUps.forEach((item)=>{setPopUpClosing(item)});
+function setPopUpsHandlers() {
+  const popUps = Array.from(document.querySelectorAll('.popup'));
+  popUps.forEach((item) => {
+    setPopUpClosing(item)
+  });
 }
 
-function setPopUpClosing (popUpItem) {
+function setPopUpClosing(popUpItem) {
   const closeBtn = popUpItem.querySelector('.popup__close-btn');
   closeBtn.addEventListener('click', closePopUp);
   popUpItem.addEventListener('click', closeByOverlay)
@@ -148,5 +124,8 @@ elementForm.addEventListener('submit', handleElementSubmit);
 editBTn.addEventListener('click', openProfilePopUp);
 addBtn.addEventListener('click', openElementPopUp)
 
-// renderInitialElements();
+profileFormValidator.enableValidation();
+elementFormValidator.enableValidation();
+
+renderInitialElements();
 setPopUpsHandlers();
