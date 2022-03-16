@@ -1,6 +1,6 @@
 .edit-frm__save-btn_disabled {
   border: 1px solid #000000;
-  background: #E5E5E5;
+  background: transparent;
   color: #000000;
   opacity: .3;
 }
