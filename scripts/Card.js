@@ -27,7 +27,7 @@ export class Card {
 
     this._likeBtn.addEventListener('click', this._handleLikeBtn);
     this._delBtn.addEventListener('click', this._handleDelBtn);
-    photo.addEventListener('click', this._handlePhotoClick);
+    photo.addEventListener('click', () => this._handlePhotoClick());
 
     return this._cardElement;
   }
