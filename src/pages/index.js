@@ -1,25 +1,27 @@
 import {
   FormValidator
-} from "./FormValidator.js";
+} from "../components/FormValidator.js";
 import {
   Card
-} from "./Card.js";
+} from "../components/Card.js";
 import {
   initialElements,
   validationSettings
-} from "./initialData.js"
+} from "../components/initialData.js"
 import {
   Section
-} from "./Section.js";
+} from "../components/Section.js";
 import {
   PopupWithImage
-} from "./PopupWithImage.js";
+} from "../components/PopupWithImage.js";
 import {
   PopupWithForm
-} from "./PopupWithForm.js";
+} from "../components/PopupWithForm.js";
 import {
   UserInfo
-} from "./UserInfo.js";
+} from "../components/UserInfo.js";
+
+import './index.css';
 
 
 
