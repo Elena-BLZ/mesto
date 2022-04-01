@@ -18,6 +18,7 @@ module.exports = {
           directory: path.resolve (__dirname, 'dist'),
         }, 
         port: 8080,
+        open: true
     },
     plugins: [
         new CleanWebpackPlugin(),
