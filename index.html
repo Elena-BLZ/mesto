@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Место</title>
+<script defer src="index.js"></script><link href="main.css" rel="stylesheet"></head>
+
+<body class="page">
+  <div class="page__container">
+    <header class="header page__header">
+      <img src="03b78ada3425e9132ff3.svg" alt="Логотип" class="logo header__logo">
+    </header>
+    <main class="page__content">
+      <section class="profile page__profile">
+        <img src="6163c2039d1f0eb8d7ca.jpg" alt="Кусто в шапке" class="profile__avatar">
+        <div class="profile__info">
+          <div class="profile__name-container">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit-btn button" type="button" aria-label="Редактировать профиль"></button>
+          </div>
+          <p class="profile__description">Исследователь океана</p>
+        </div>
+        <button class="profile__add-btn button" type="button" aria-label="Добавить"></button>
+      </section>
+      <section class="elements">
+      </section>
+
+    </main>
+    <footer class="footer page__footer">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
+  </div>
+  <div class="popup popup_type_profile">
+    <div class="popup__container">
+      <button class="popup__close-btn button" type="button" aria-label="Закрыть">
+      </button>
+      <form class="edit-frm edit-frm_type_profile" name="edit-profile-frm" novalidate>
+        <h2 class="edit-frm__heading">Редактировать профиль</h2>
+        <input type="text" class="edit-frm__item edit-frm__item_type_name" name="name" placeholder="Как вас зовут?"
+          required minlength="2" maxlength="40">
+        <span id="name-error" class="edit-frm__error-message"></span>
+        <input type="text" class="edit-frm__item edit-frm__item_type_description" name="description"
+          placeholder="Еще немного о себе." required minlength="2" maxlength="200">
+        <span id="description-error" class="edit-frm__error-message"></span>
+        <button class="edit-frm__save-btn button" type='submit'>Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_element">
+    <div class="popup__container">
+      <button class="popup__close-btn button" type="button" aria-label="Закрыть">
+      </button>
+      <form class="edit-frm edit-frm_type_element" name="add-element-frm" novalidate>
+        <h2 class="edit-frm__heading">Новое место</h2>
+        <input type="text" class="edit-frm__item edit-frm__item_type_place" name="place"
+          placeholder="Название" required minlength="2" maxlength="30">
+        <span id="place-error" class="edit-frm__error-message"></span>
+        <input type="url" class="edit-frm__item edit-frm__item_type_link" name="link"
+          placeholder="Ссылка на картинку" required>
+        <span id="link-error" class="edit-frm__error-message"></span>
+        <button class="edit-frm__save-btn" type='submit'>Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_picture">
+    <div class="popup__container popup__container_type_picture">
+      <button class="popup__close-btn button" type="button" aria-label="Закрыть">
+      </button>
+      <figure class="popup__figure">
+        <img class="popup__picture">
+        <figcaption class="popup__caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <template class="element-template">
+    <article class="element">
+      <div class="element__photo-container">
+        <img class="element__photo button">
+        <button class="element__del-btn button" type="button" aria-label="Удалить"></button>
+      </div>
+      <div class="element__info">
+        <h2 class="element__name"></h2>
+        <button class="element__like-btn button" type="button" aria-label="По нраву мне"></button>
+      </div>
+    </article>
+  </template>
+
+</body>
+
+</html>
