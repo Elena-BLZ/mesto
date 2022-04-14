@@ -40,7 +40,7 @@ import {
   avatarInput,
   avatar,
   loadingText
-} from '../components/Constants.js'
+} from '../utils/Constants.js'
 
 let userId;
 
@@ -61,23 +61,17 @@ api.getProfile()
   })
   .then(() => {
     api.getInitialCards()
-      .then(cardList => {
-        cardList.forEach(
-          data => {
-            const cardElement = createElement(configElementData(data));
-            cardSection.addItem(cardElement);
-          }
-        )
-      });
-  });
+      .then(
+        cardList => cardSection.renderItems(cardList))
+      .catch(err => console.log(`Ошибка.....: ${err}`))
+  }).catch(err => console.log(`Ошибка.....: ${err}`));
 
 const profileFormValidator = new FormValidator(validationSettings, profileForm);
 const elementFormValidator = new FormValidator(validationSettings, elementForm);
 const avatarFormValidator = new FormValidator(validationSettings, avatarForm);
 
-
-function renderElement(card, container) {
-  container.prepend(createElement(card));
+function renderElement(card) {
+  cardSection.addItem(createElement(configElementData(card)));
 }
 
 function createElement(card) {
@@ -104,12 +98,14 @@ function createElement(card) {
             newCard.setLikes(res.likes);
             newCard.setLikeBtn(false);
           })
+          .catch(err => console.log(`Ошибка.....: ${err}`))
       } else {
         api.addLike(id)
           .then((res) => {
             newCard.setLikes(res.likes);
             newCard.setLikeBtn(true);
           })
+          .catch(err => console.log(`Ошибка.....: ${err}`))
       };
     }
   );
@@ -139,9 +135,6 @@ function openProfilePopUp() {
 }
 
 function openElementPopUp() {
-  placeInput.value = '';
-  linkInput.value = '';
-
   elementFormValidator.resetErrors();
   elementFormValidator.toggleButtonState();
 
@@ -149,7 +142,7 @@ function openElementPopUp() {
 }
 
 function openAvatarPopUp() {
-  avatarInput.value = avatar.src;
+  avatarInput.value = userInfo.getAvatarLink();
 
   avatarFormValidator.resetErrors();
   avatarFormValidator.toggleButtonState();
@@ -169,6 +162,7 @@ function handleProfileSubmit(data) {
       userInfo.setUserInfo(data);
       profilePopUp.close();
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => {
       profilePopUp.loading(false);
     })
@@ -178,10 +172,10 @@ function handleElementSubmit(data) {
   elementPopUp.loading(true, loadingText);
   api.addCard(data.place, data.link)
     .then(res => {
-      const cardElement = createElement(configElementData(res));
-      cardSection.addItem(cardElement);
+      renderElement (res);
       elementPopUp.close();
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => {
       elementPopUp.loading(false);
     })
@@ -189,13 +183,12 @@ function handleElementSubmit(data) {
 
 function handleAvatarSubmit(data) {
   avatarPopUp.loading(true, loadingText);
-  console.log('data', data);
-  api.editAvatar(data.link)
+  api.editAvatar(data.avatar)
     .then(res => {
-      console.log('res', res);
       avatar.src = res.avatar;
       avatarPopUp.close();
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => {
       avatarPopUp.loading(false);
     })
@@ -210,10 +203,8 @@ elementFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
 
 const cardSection = new Section({
-  items: [],
   renderer: renderElement
 }, '.elements');
-cardSection.renderItems();
 
 const picturePopUp = new PopupWithImage('.popup_type_picture');
 picturePopUp.setEventListeners();

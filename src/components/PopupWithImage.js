@@ -2,7 +2,7 @@ import {
   Popup
 } from './Popup.js';
 
-import {bigPhoto, caption} from './Constants.js'
+import {bigPhoto, caption} from '../utils/Constants.js'
 
 export class PopupWithImage extends Popup {
   open = (name, link) => {

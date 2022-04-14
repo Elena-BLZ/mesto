@@ -8,12 +8,12 @@ export class PopupWithForm extends Popup {
     this._form = this._popup.querySelector('.edit-frm');
     this._saveButton = this._form.querySelector('.edit-frm__save-btn');
     this._buttonText = this._saveButton.textContent;
+    this._inputs = [...this._popup.querySelectorAll('.edit-frm__item')];
   }
 
   _getInputValues() {
     const data = {};
-    const inputs = [...this._popup.querySelectorAll('.edit-frm__item')];
-    inputs.forEach(input => {
+    this._inputs.forEach(input => {
       data[input.name] = input.value;
     });
     return data;

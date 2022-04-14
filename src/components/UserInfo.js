@@ -17,6 +17,10 @@ export class UserInfo {
     return userData;
   }
 
+  getAvatarLink() {
+    return this._avatarElement.src;
+  }
+
   setUserInfo({
     name,
     description,

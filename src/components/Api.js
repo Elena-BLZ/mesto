@@ -18,7 +18,6 @@ class Api {
           return Promise.reject(res.status);
         }
       )
-      .catch(console.log)
   }
 
   getProfile() {
@@ -32,7 +31,6 @@ class Api {
           return Promise.reject(res.status);
         }
       )
-      .catch(console.log)
   }
 
   editProfile(name, about) {
@@ -51,11 +49,9 @@ class Api {
           return Promise.reject(res.status);
         }
       )
-      .catch(console.log)
   }
 
   editAvatar(link) {
-    console.log('link', link);
     return fetch(`${this._baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
@@ -70,7 +66,6 @@ class Api {
           return Promise.reject(res.status);
         }
       )
-      .catch(console.log)
   }
 
   addCard(name, link) {
@@ -89,7 +84,6 @@ class Api {
           return Promise.reject(res.status);
         }
       )
-      .catch(console.log)
   }
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
@@ -103,7 +97,6 @@ class Api {
           return Promise.reject(res.status);
         }
       )
-      .catch(console.log)
   }
 
   deleteLike(id) {
@@ -118,7 +111,6 @@ class Api {
           return Promise.reject(res.status);
         }
       )
-      .catch(console.log)
   }
 
   addLike(id) {
@@ -133,7 +125,6 @@ class Api {
           return Promise.reject(res.status);
         }
       )
-      .catch(console.log)
   }
 }
 
