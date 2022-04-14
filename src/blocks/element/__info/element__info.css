@@ -1,6 +1,13 @@
 .element__info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: auto 25px;
+
+  grid-template-areas:
+  "text like"
+  "text count";
+
+
+
   margin: 25px 21px 0;
 }

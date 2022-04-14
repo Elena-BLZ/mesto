@@ -4,6 +4,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
-  height: 19px;
-  width: 22px;
+  height: 20px;
+  width: 23px;
+  grid-area: like;
+  justify-self: center;
 }
