@@ -29,12 +29,17 @@ import './index.css';
 import {
   profileEditBtn,
   elementAddBtn,
+  avatarBtn,
   profileForm,
   elementForm,
+  avatarForm,
   placeInput,
   linkInput,
   nameInput,
-  jobInput} from '../components/Constants.js'
+  jobInput,
+  avatarInput,
+  avatar
+} from '../components/Constants.js'
 
 let userId;
 
@@ -73,6 +78,8 @@ api.getInitialCards ()
 
 const profileFormValidator = new FormValidator(validationSettings, profileForm);
 const elementFormValidator = new FormValidator(validationSettings, elementForm);
+const avatarFormValidator = new FormValidator(validationSettings, avatarForm);
+
 
 function renderElement(card, container) {
   container.prepend(createElement(card));
@@ -148,6 +155,15 @@ function openElementPopUp() {
   elementPopUp.open();
 }
 
+function openAvatarPopUp() {
+  avatarInput.value = avatar.src;
+
+  avatarFormValidator.resetErrors();
+  avatarFormValidator.toggleButtonState();
+
+  avatarPopUp.open();
+}
+
 function handleProfileSubmit(data) {
 
   api.editProfile (data.name, data.description)
@@ -166,6 +182,16 @@ function handleElementSubmit(data) {
       elementPopUp.close();
     })
 }
+function handleAvatarSubmit(data) {
+  console.log ('data',data);
+  api.editAvatar (data.link)
+    .then (res => {
+      console.log ('res', res);
+      avatar.src = res.avatar;
+      avatarPopUp.close();
+    })
+}
+
 
 function handleDelConfirm () {
   console.log ('del');
@@ -173,9 +199,13 @@ function handleDelConfirm () {
 
 profileEditBtn.addEventListener('click', openProfilePopUp);
 elementAddBtn.addEventListener('click', openElementPopUp);
+avatarBtn.addEventListener('click', openAvatarPopUp);
+
 
 profileFormValidator.enableValidation();
 elementFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
+
 
 const cardSection = new Section({
   items: [],
@@ -188,9 +218,14 @@ picturePopUp.setEventListeners();
 
 const profilePopUp = new PopupWithForm('.popup_type_profile', handleProfileSubmit);
 profilePopUp.setEventListeners();
+
 const elementPopUp = new PopupWithForm('.popup_type_element', handleElementSubmit)
 elementPopUp.setEventListeners();
+
 const confirmPopUp = new PopupWithForm ('.popup_type_confirm');
 confirmPopUp.setEventListeners();
+
+const avatarPopUp = new PopupWithForm('.popup_type_avatar', handleAvatarSubmit)
+avatarPopUp.setEventListeners();
 
 

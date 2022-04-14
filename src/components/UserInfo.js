@@ -21,10 +21,10 @@ export class UserInfo {
   setUserInfo({
     name,
     description,
-   // avatar
+    avatar
   }) {
     this._nameElement.textContent = name;
     this._jobElement.textContent = description;
-  //  this._avatarElement.src = avatar;
+    avatar ? this._avatarElement.src = avatar : {} ;
   }
 }
