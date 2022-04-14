@@ -14,13 +14,14 @@
     </header>
     <main class="page__content">
       <section class="profile page__profile">
-        <img src="6163c2039d1f0eb8d7ca.jpg" alt="Кусто в шапке" class="profile__avatar">
+        <img src="" alt="Аватар" class="profile__avatar">
+        <button  class="profile__avatar-btn" type="button" aria-label="Редактировать аватар"></button>
         <div class="profile__info">
           <div class="profile__name-container">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit-btn button" type="button" aria-label="Редактировать профиль"></button>
           </div>
-          <p class="profile__description">Исследователь океана</p>
+          <p class="profile__description"></p>
         </div>
         <button class="profile__add-btn button" type="button" aria-label="Добавить"></button>
       </section>
@@ -64,6 +65,29 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_type_confirm">
+    <div class="popup__container">
+      <button class="popup__close-btn button" type="button" aria-label="Закрыть">
+      </button>
+      <form class="edit-frm edit-frm_type_confirm" name="confirm-frm" novalidate>
+        <h2 class="edit-frm__heading">Вы уверены?</h2>
+        <button class="edit-frm__save-btn button" type='submit'>Да</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button class="popup__close-btn button" type="button" aria-label="Закрыть">
+      </button>
+      <form class="edit-frm edit-frm_type_avatar" name="avatar-frm" novalidate>
+        <h2 class="edit-frm__heading">Обновить аватар</h2>
+        <input type="url" class="edit-frm__item edit-frm__item_type_link" name="link"
+          placeholder="Ссылка на аватар" required>
+        <span id="link-error" class="edit-frm__error-message"></span>
+        <button class="edit-frm__save-btn" type='submit'>Сохранить</button>
+      </form>
+    </div>
+  </div>
   <div class="popup popup_type_picture">
     <div class="popup__container popup__container_type_picture">
       <button class="popup__close-btn button" type="button" aria-label="Закрыть">
@@ -84,6 +108,7 @@
       <div class="element__info">
         <h2 class="element__name"></h2>
         <button class="element__like-btn button" type="button" aria-label="По нраву мне"></button>
+        <span class="element__like-count">1</span>
       </div>
     </article>
   </template>
