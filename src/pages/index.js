@@ -38,7 +38,8 @@ import {
   nameInput,
   jobInput,
   avatarInput,
-  avatar
+  avatar,
+  loadingText
 } from '../components/Constants.js'
 
 let userId;
@@ -165,30 +166,42 @@ function openAvatarPopUp() {
 }
 
 function handleProfileSubmit(data) {
-
+  profilePopUp.loading (true, loadingText);
   api.editProfile (data.name, data.description)
-  .then
-  {
+  .then ((res) => {
+    const data = {name: res.name, description: res.about, avatar: res.avatar};
     userInfo.setUserInfo(data);
-    profilePopUp.close();}
-
+    profilePopUp.close();
+  })
+  .finally (()=>{
+    profilePopUp.loading (false);
+  })
 }
 
 function handleElementSubmit(data) {
+  elementPopUp.loading (true, loadingText);
   api.addCard (data.place, data.link)
     .then (res => {
       const cardElement = createElement(configElementData(res));
       cardSection.addItem(cardElement);
       elementPopUp.close();
     })
+    .finally (()=>{
+      elementPopUp.loading (false);
+    })
+
 }
 function handleAvatarSubmit(data) {
+  avatarPopUp.loading (true, loadingText);
   console.log ('data',data);
   api.editAvatar (data.link)
     .then (res => {
       console.log ('res', res);
       avatar.src = res.avatar;
       avatarPopUp.close();
+    })
+    .finally (()=>{
+      avatarPopUp.loading (false);
     })
 }
 

@@ -20,3 +20,5 @@ export const avatarInput = avatarForm.querySelector('.edit-frm__item_type_link')
 export const bigPhoto = page.querySelector('.popup__picture');
 export const caption = page.querySelector('.popup__caption');
 export const avatar = page.querySelector('.profile__avatar');
+
+export const loadingText = 'Сохранение...';

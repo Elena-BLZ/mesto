@@ -64,7 +64,6 @@ class Api {
   }
 
   addCard (name, link) {
-    console.log ('start');
     return fetch (`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -79,7 +78,6 @@ class Api {
          return Promise.reject(res.status);}
     )
     .catch (console.log)
-    .finally (()=>console.log('finish') )
   }
   deleteCard (id) {
     return fetch (`${this._baseUrl}/cards/${id}`, {
