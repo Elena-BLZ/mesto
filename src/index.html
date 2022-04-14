@@ -14,7 +14,7 @@
     </header>
     <main class="page__content">
       <section class="profile page__profile">
-        <img src="<%=require('./images/avatar.jpg')%>" alt="Кусто в шапке" class="profile__avatar">
+        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
         <div class="profile__info">
           <div class="profile__name-container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -64,6 +64,16 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_type_confirm">
+    <div class="popup__container">
+      <button class="popup__close-btn button" type="button" aria-label="Закрыть">
+      </button>
+      <form class="edit-frm edit-frm_type_confirm" name="confirm-frm" novalidate>
+        <h2 class="edit-frm__heading">Вы уверены?</h2>
+        <button class="edit-frm__save-btn button" type='submit'>Да</button>
+      </form>
+    </div>
+  </div>
   <div class="popup popup_type_picture">
     <div class="popup__container popup__container_type_picture">
       <button class="popup__close-btn button" type="button" aria-label="Закрыть">
@@ -84,6 +94,7 @@
       <div class="element__info">
         <h2 class="element__name"></h2>
         <button class="element__like-btn button" type="button" aria-label="По нраву мне"></button>
+        <span class="element__like-count">1</span>
       </div>
     </article>
   </template>
