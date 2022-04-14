@@ -64,21 +64,12 @@ api.getProfile()
       .then(cardList => {
         cardList.forEach(
           data => {
-
             const cardElement = createElement(configElementData(data));
             cardSection.addItem(cardElement);
           }
         )
       });
-
   });
-
-
-
-
-
-
-
 
 const profileFormValidator = new FormValidator(validationSettings, profileForm);
 const elementFormValidator = new FormValidator(validationSettings, elementForm);
@@ -194,7 +185,6 @@ function handleElementSubmit(data) {
     .finally(() => {
       elementPopUp.loading(false);
     })
-
 }
 
 function handleAvatarSubmit(data) {
@@ -211,20 +201,13 @@ function handleAvatarSubmit(data) {
     })
 }
 
-
-function handleDelConfirm() {
-  console.log('del');
-}
-
 profileEditBtn.addEventListener('click', openProfilePopUp);
 elementAddBtn.addEventListener('click', openElementPopUp);
 avatarBtn.addEventListener('click', openAvatarPopUp);
 
-
 profileFormValidator.enableValidation();
 elementFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
-
 
 const cardSection = new Section({
   items: [],

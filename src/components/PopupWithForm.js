@@ -44,5 +44,4 @@ export class PopupWithForm extends Popup {
       this._saveButton.textContent = this._buttonText;
     }
   }
-
 }

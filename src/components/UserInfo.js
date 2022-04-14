@@ -7,7 +7,6 @@ export class UserInfo {
     this._nameElement = document.querySelector(nameSelector);
     this._jobElement = document.querySelector(jobSelector);
     this._avatarElement = document.querySelector(avatarSelector);
-
   }
 
   getUserInfo() {
